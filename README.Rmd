@@ -1,0 +1,131 @@
+---
+title: "Code Chunk: Knitr & Kable Extra Tables for Research Purposes"
+output: github_document
+---
+
+# Code Chunk: Knitr & Kable Extra Tables for Research Purposes
+
+## Why this table?
+
+
+Welcome to my infomercial on why my incredible Knitr table will make your life easier! 
+
+
+Complex tables can be difficult to create, but when given the right tools and packages it can make the experience of creating intricate tables easy. The knitrtable code chunk in the example below can be a helpful resource for creating beautiful looking tables.
+
+
+The following example and data comes from a similar dataset to a study on freshwater availability in Sub-Saharan Africa ^[Pickering, A. J., &amp; Davis, J. (2012). Freshwater availability and water fetching distance affect child health in Sub-Saharan africa. Environmental Science &amp;amp; Technology, 46(4), 2391–2397. https://doi.org/10.1021/es203177v]. This table was an attempt to recreate the table used in the Pickering and Davis study. 
+
+
+## Set Up!
+
+Creating these easy tables will include the following setup. As usual, please make sure to set your working directory and then install the following packages: 
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = FALSE,
+	warning = FALSE
+)
+
+setwd("/Users/sienaloprinzi/Desktop/Stats/Assessments - 3/PS3")
+
+library(tidyverse)
+
+library(knitr) 
+
+install.packages("kableExtra")
+
+library(kableExtra)
+
+library(scales)
+
+load("ssa_water.Rdata")
+
+# Now clean up the data!
+
+water1 = water %>%
+  rename(
+    country = countryModule,
+    year = interviewYear,
+    walktime = waterTimeMins
+  )
+  
+
+water2 = water1 %>%
+  select(country, year, walktime)
+
+N = water2 %>% 
+  group_by(country) %>% 
+  summarize(N = n()) 
+
+year = water2%>%
+  group_by(country) %>%
+  summarise(year = paste(min(year, na.rm = TRUE), max(year, na.rm = TRUE), sep = "-"))
+
+`% on plot` = water2 %>%
+  group_by(country) %>%
+  summarise(`% on plot` = round(sum(walktime == 0, na.rm = TRUE) / sum(!is.na(walktime)) * 100))
+
+
+walk_time = 
+  water2 %>%
+  group_by(country) %>%
+  summarise(
+    mean = mean(walktime, na.rm = T), 
+    SD = sd(walktime, na.rm = T), 
+    med = median(walktime, na.rm = T)
+  )
+
+
+df1 = left_join(N, year,  
+                by = join_by(country))
+
+
+df2 = left_join(df1, walk_time,  
+                by = join_by(country))
+
+
+df3 = left_join(df2, `% on plot`,  
+                by = join_by(country))
+
+
+```
+
+To try the example yourself, you can find the dataset above labeled `ssa_water.Rdata`
+
+
+## Try an Example
+
+
+Don't take it from me, try the following table for yourself!
+
+```{r func, eval = TRUE}
+df3 %>%
+  kable(.,align = "c", 
+        caption = "Table 1. Household Survey Observations (n = 199 067) from 28 Countries in Sub-Saharan Africa$^a$", 
+        caption_position = "top_left") %>%
+  add_header_above(c(" " = 3, 
+                     "walk time (min)" = 3, 
+                     " " = 1), 
+                   line = 2, 
+                   bold = TRUE, 
+                   escape = FALSE, 
+                   background = "#d3d3d3") %>%
+  kable_classic(full_width = F) %>%
+  row_spec(0, background = "#d3d3d3") %>%
+  footnote(alphabet = c(
+    "Number of observations are shown from each country, as well as year(s) of survey, mean one-way walk time to water source in minutes (min), standard deviation of mean walk time (SD), median walk time (med), and percent of households with water source located on the premises (% on plot)." 
+    )) 
+
+```
+
+
+You can see from the code and output what this code is capable of. You easily have full control over the caption, header, background, table style (as seen with the `kable_classic` code), and footnote. 
+
+
+## In Conclusion
+
+As a student that is looking to go on to get a PhD, this code chunk is a good example that I can take and use for other projects. Since it has a clear style with the `kable_classic` line of code, it can easily be used for research papers. 
+
+
