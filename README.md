@@ -1,8 +1,6 @@
 Code Chunk: Knitr & Kable Extra Tables for Research Purposes
 ================
 
-# Code Chunk: Knitr & Kable Extra Tables for Research Purposes
-
 ## Why this table?
 
 Welcome to my infomercial on why my incredible Knitr table will make
