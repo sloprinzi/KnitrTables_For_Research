@@ -3,13 +3,11 @@ Code Chunk: Knitr & Kable Extra Tables for Research Purposes
 
 ## Why this table?
 
-Welcome to my infomercial on why my incredible Knitr table will make
-your life easier!
+Welcome to my Knitr Table page! Hopefully this code chunk will make
+your life easier when making a complex table.
 
-Complex tables can be difficult to create, but when given the right
-tools and packages it can make the experience of creating intricate
-tables easy. The knitrtable code chunk in the example below can be a
-helpful resource for creating beautiful looking tables.
+The knitrtable code chunk in the example below can be a
+helpful resource for creating organized and beautiful looking tables.
 
 The following example and data comes from a similar dataset to a study
 on freshwater availability in Sub-Saharan Africa [^1]. This table was an
