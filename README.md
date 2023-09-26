@@ -762,9 +762,9 @@ style (as seen with the `kable_classic` code), and footnote.
 
 ## In Conclusion
 
-As a student that is looking to go on to get a PhD, this code chunk is a
-good example that I can take and use for other projects. Since it has a
-clear style with the `kable_classic` line of code, it can easily be used
+Created in my data analysis courses, this code chunk is a
+good example that can be used for many projects. Since it has a
+clear style with the `kable_classic` line of code, it can also easily be used
 for research papers.
 
 [^1]: Pickering, A. J., & Davis, J. (2012). Freshwater availability and
