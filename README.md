@@ -19,6 +19,13 @@ Creating these easy tables will include the following setup. As usual,
 please make sure to set your working directory and then install the
 following packages:
 
+
+`tidyverse` 
+`knitr` 
+`kableExtra`
+`scales`
+
+
 To try the example yourself, you can find the dataset above labeled
 `ssa_water.Rdata`
 
